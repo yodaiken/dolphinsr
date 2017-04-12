@@ -1,7 +1,7 @@
 # DolphinSR: Spaced Repetition in JavaScript
 
 DolphinSR implements [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition) in
-JavaScript. Specifically, it uses [Anki's modifications](https://apps.ankiweb.net/docs/manual.html#what-algorithm),
+JavaScript. Specifically, it uses [Anki's modifications](https://apps.ankiweb.net/docs/manual.html#what-algorithm)
 to the SM2 algorithm including:
 
 - an initial mode for learning new cards

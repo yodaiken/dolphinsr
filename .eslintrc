@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "rules": {
+    "no-nested-ternary": 0,
+    "no-underscore-dangle": 0
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "jest"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+    "jest/globals": true
+  }
+}

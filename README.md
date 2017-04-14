@@ -145,6 +145,26 @@ Add reviews to the DolphinSR instance.
 and all chronologically come after the previous latest review for any card. If this condition is
 met, `addReviews()` will return `false`. Otherwise, it returns `true`.
 
+### (new DolphinSR()).summary(): { due: number, later: number, learning: number, overdue: number }
+Returns summary statistics for cards. Each category (due, later, learning, overdue) is a count.
+
+- Due cards are cards that the algorithm has determined should be reviewed on the day of the call. 
+  (That is, the current date as reflected by `new Date()`.)
+- Overdue cards are cards that the algorithm has determined should be reviewed earlier than the
+  day of the call.
+- Learning cards are cards that are either new and don't have any reviews, or cards that were
+  forgotten (reviewed with an `again` rating) and not yet re-learned.
+- Later cards are cards that will be due in the future.
+
+### (new DolphinSR()).nextCard(): ?Card
+Returns the next card to be reviewed, or `null` if there are no cards that need to be reviewed. Any
+card classified as due, overdue or learning by `.summary()` could appear in `.nextCard()`.
+
+*Note:* `.nextCard()` is deterministic--there is a defined order for prioritizing cards that are in
+different classifications and within classifications. That means that for any given set of masters
+and reviews added to a DolphinSR instance, `nextCard()` will return the same result.
+
+
 ## Types
 
 ### Master
@@ -192,5 +212,19 @@ A `Review` is an object describing a review of a card by a user. It should look 
   combination: Combination,
   ts: Date,
   rating: Rating,
+}
+```
+
+### Card
+
+A `Card` is an object returned by `.nextCard()` which describes a part of a master suitable for
+displaying to a user. It should look like this:
+
+```{js}
+{
+  master: Id,
+  combination: Combination,
+  front: Array<Field>,
+  back: Array<Field>
 }
 ```
